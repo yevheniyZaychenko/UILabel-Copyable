@@ -131,7 +131,7 @@
     // Remove gesture recognizer
     if(self.copyLongPressGestureRecognizer) {
         [self removeGestureRecognizer:self.copyLongPressGestureRecognizer];
-        self.longPressGestureRecognizer = nil;
+        self.copyLongPressGestureRecognizer = nil;
     }
     
     if(self.shouldUseLongPressGestureRecognizer && self.copyingEnabled) {
