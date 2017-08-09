@@ -28,7 +28,7 @@
 
 @interface UILabel ()
 
-@property (nonatomic) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic) UILongPressGestureRecognizer *copyLongPressGestureRecognizer;
 
 @end
 
@@ -61,7 +61,7 @@
 
 - (void) longPressGestureRecognized:(UIGestureRecognizer *) gestureRecognizer
 {
-    if (gestureRecognizer == self.longPressGestureRecognizer)
+    if (gestureRecognizer == self.copyLongPressGestureRecognizer)
     {
         if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
         {
@@ -92,14 +92,14 @@
     }
 }
 
-- (UILongPressGestureRecognizer *)longPressGestureRecognizer
+- (UILongPressGestureRecognizer *)copyLongPressGestureRecognizer
 {
-    return objc_getAssociatedObject(self, @selector(longPressGestureRecognizer));
+    return objc_getAssociatedObject(self, @selector(copyLongPressGestureRecognizer));
 }
 
-- (void)setLongPressGestureRecognizer:(UILongPressGestureRecognizer *)longPressGestureRecognizer
+- (void)setCopyLongPressGestureRecognizer:(UILongPressGestureRecognizer *)copyLongPressGestureRecognizer
 {
-    objc_setAssociatedObject(self, @selector(longPressGestureRecognizer), longPressGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(copyLongPressGestureRecognizer), copyLongPressGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)shouldUseLongPressGestureRecognizer
@@ -129,16 +129,16 @@
 - (void) setupGestureRecognizers
 {
     // Remove gesture recognizer
-    if(self.longPressGestureRecognizer) {
-        [self removeGestureRecognizer:self.longPressGestureRecognizer];
+    if(self.copyLongPressGestureRecognizer) {
+        [self removeGestureRecognizer:self.copyLongPressGestureRecognizer];
         self.longPressGestureRecognizer = nil;
     }
     
     if(self.shouldUseLongPressGestureRecognizer && self.copyingEnabled) {
         self.userInteractionEnabled = YES;
         // Enable gesture recognizer
-        self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
-        [self addGestureRecognizer:self.longPressGestureRecognizer];
+        self.copyLongPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
+        [self addGestureRecognizer:self.copyLongPressGestureRecognizer];
     }
 }
 
